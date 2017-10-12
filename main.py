@@ -13,18 +13,28 @@ async def on_ready():
     print(client.user.id)
     getter.set_initial_hash()
     print('------')
-    
+
 @client.event
 async def on_message(message):
     if message.content.startswith("c!ping"):
-        await client.send_message(client.get_channel("367920715116183554"), "Pong!")
+        await client.send_message(client.get_channel(config.channel_id), "Pong!")
+    elif message.content.startswith("c!site"):
+        await client.send_message(client.get_channel(config.channel_id), "The current website is {}.".format(config.site))
     elif message.content.startswith("c!check"):
-        print("Checking")
         if getter.has_hash_changed():
             words = "Your website at {} has updated!".format(config.site)
         else:
             words = "No change. :("
-        await client.send_message(client.get_channel("367920715116183554"), words)
+        await client.send_message(client.get_channel(config.channel_id), words)
 
 
+async def do_site_check():
+    await client.wait_until_ready()
+    while not client.is_closed:
+        if getter.has_hash_changed():
+            await client.send_message(client.get_channel(config.channel_id),  "Your website at {} has updated!".format(config.site))
+        await asyncio.sleep(10)
+
+
+client.loop.create_task(do_site_check())
 client.run(config.very_secret_key)
