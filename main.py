@@ -11,8 +11,9 @@ async def on_ready():
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
-    getter.set_initial_hash()
+    await getter.set_initial_hash()
     print('------')
+
 
 @client.event
 async def on_message(message):
@@ -31,7 +32,7 @@ async def on_message(message):
 async def do_site_check():
     await client.wait_until_ready()
     while not client.is_closed:
-        if getter.has_hash_changed():
+        if await getter.has_hash_changed():
             await client.send_message(client.get_channel(config.channel_id),  "Your website at {} has updated!".format(config.site))
         await asyncio.sleep(10)
 
