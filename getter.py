@@ -1,6 +1,7 @@
 import requests
 import hashlib
-site = "http://asherfoster.com"
+import config
+site = config.site
 initial_hash = ""
 
 
@@ -19,7 +20,7 @@ def set_initial_hash():
     initial_hash = get_hash()
 
 
-def check_hash():
+def has_hash_changed():
     new_hash = get_hash()
     if new_hash == initial_hash:
         return False
@@ -30,4 +31,4 @@ def check_hash():
 
 if __name__ == "__main__":
     set_initial_hash()
-    print(check_hash())
+    print(has_hash_changed())
