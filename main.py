@@ -34,7 +34,7 @@ async def do_site_check():
     while not client.is_closed:
         if await getter.has_hash_changed():
             await client.send_message(client.get_channel(config.channel_id),  "Your website at {} has updated!".format(config.site))
-        await asyncio.sleep(10)
+        await asyncio.sleep(60 * config.time_between_tries)
 
 
 client.loop.create_task(do_site_check())
