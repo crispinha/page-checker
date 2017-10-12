@@ -1,4 +1,4 @@
-# page-checker
+# Page Checker
 
 ## What is this?
 It's a Discord bot that I made in an afternoon. It scrapes web pages and sends a message if they've changed.
@@ -19,3 +19,7 @@ time_between_tries = [Time in minutes between each scrape of the page
 ```
 4. Run `main.py`.
 5. I warned you.
+
+## Known Issues
+On some `https` urls, it fails. I think this is caused by the async http library I'm using not handling certificates properly.
+To fix this, use `http` urls instead.
