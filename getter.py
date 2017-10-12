@@ -1,6 +1,6 @@
 import requests
 import hashlib
-site = "http://youtube.com"
+site = "http://asherfoster.com"
 initial_hash = ""
 
 
@@ -19,6 +19,15 @@ def set_initial_hash():
     initial_hash = get_hash()
 
 
+def check_hash():
+    new_hash = get_hash()
+    if new_hash == initial_hash:
+        return False
+    else:
+        initial_hash == new_hash
+        return True
+
+
 if __name__ == "__main__":
     set_initial_hash()
-    print(initial_hash)
+    print(check_hash())
