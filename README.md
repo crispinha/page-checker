@@ -15,7 +15,7 @@ very_secret_key = "[The bot's token]"
 site = "https://[The site you want checked]"
 server_id = "[The ID of the server you want to run the bot in]"
 channel_id = "[The ID of the channel you want to run the bot in]"
-time_between_tries = [Time in minutes between each scrape of the page
+time_between_tries = [Time in minutes between each scrape of the page]
 ```
 4. Run `main.py`.
 5. I warned you.
